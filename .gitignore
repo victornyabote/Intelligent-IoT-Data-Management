@@ -1,0 +1,36 @@
+# Ignore virtual environment directories
+venv/
+.env/
+
+# Ignore Python bytecode files
+__pycache__/
+*.py[cod]
+*.pyo
+
+# Ignore Jupyter Notebook checkpoints
+.ipynb_checkpoints/
+
+# Ignore log, database, cache, and temp files
+*.log
+*.sqlite3
+*.db
+.cache/
+*.tmp
+*.bak
+
+# Ignore OS-generated files
+.DS_Store
+Thumbs.db
+
+# Ignore IDE/editor-specific folders (optional)
+.vscode/
+
+# Ignore test and coverage reports
+htmlcov/
+.tox/
+.nox/
+.coverage
+coverage.xml
+*.cover
+*.py,cover
+.cache
