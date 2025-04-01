@@ -182,11 +182,44 @@ button {
   border-radius: 5px;
   cursor: pointer;
   transition: background-color 0.3s;
+  margin-bottom: 1rem; /* Add space between buttons */
 }
 
 button:hover {
   background-color: #7f8c8d;
   color: white;
+}
+
+/* Style the upload button specifically */
+.upload-file-btn {
+  margin-top: 1rem; /* Add space above the upload button */
+  margin-bottom: 1.5rem; /* Adjust space below the upload button */
+}
+
+.upload-file-btn:hover {
+  background-color: #7f8c8d;
+  color: white;
+}
+
+/* File Upload Input Styles */
+.file-upload-input {
+  margin-top: 1rem;
+  padding: 1rem;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  width: 200px;
+  background-color: #ffffff; /* Light background */
+  color: #333; /* Dark text */
+}
+
+.file-upload-input:hover {
+  background-color: #f1f1f1; /* Hover effect */
+}
+
+/* File Upload Section */
+.data-selection .data-selection input[type="file"] {
+  margin-top: 1rem;
+  padding: 0.8rem;
 }
 
 /* Footer Section */
