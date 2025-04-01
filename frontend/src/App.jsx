@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react';
 import { Line, Bar, Pie } from 'react-chartjs-2';
-// import { ThreeDots } from 'react-loader-spinner';
 import './App.css';
 import { Chart as ChartJS, CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend, BarElement, ArcElement } from 'chart.js';
 
@@ -12,6 +11,9 @@ function App() {
   const [selectedGraph, setSelectedGraph] = useState('');
   const [loading, setLoading] = useState(false);
   const [isDarkMode, setIsDarkMode] = useState(false);  // State for dark mode
+  const [file, setFile] = useState(null); // File upload state
+  const [isUploadVisible, setIsUploadVisible] = useState(false); // File upload visibility
+  const [graphVisible, setGraphVisible] = useState(false); // Control visibility of graph on submit
 
   const features = [
     { title: 'Advanced Data Analytics', description: 'Transform your raw data into actionable insights with advanced algorithms and visualization tools.' },
@@ -79,6 +81,28 @@ function App() {
     setIsDarkMode(!isDarkMode);  // Toggle dark mode
   };
 
+  const handleFileChange = (event) => {
+    const uploadedFile = event.target.files[0];
+    setFile(uploadedFile);
+  };
+
+  const handleFileUpload = () => {
+    if (file) {
+      // Process the file upload (this can be sending it to the backend)
+      alert(`File uploaded: ${file.name}`);
+    } else {
+      alert("No file selected!");
+    }
+  };
+
+  const handleUploadButtonClick = () => {
+    setIsUploadVisible(true); // Show file upload input when upload button is clicked
+  };
+
+  const handleSubmit = () => {
+    setGraphVisible(true);  // Show graph only after submit
+  };
+
   return (
     <div className={`app-container ${isDarkMode ? 'dark-mode' : ''}`}>
       {/* Top Navigation Bar */}
@@ -131,28 +155,42 @@ function App() {
 
           <select value={selectedGraph} onChange={handleGraphSelection}>
             <option value="">Select Graph Type</option>
-            <option value="graph1">Line Graph</option>
-            <option value="graph2">Bar Chart</option>
+            <option value="graph1">Bar Graph</option>
+            <option value="graph2">Line Chart</option>
             <option value="graph3">Pie Chart</option>
           </select>
 
-          <button onClick={() => alert('Data and Graph selection submitted')}>
+          <button onClick={handleSubmit} style={{ marginBottom: '10px' }}>
             Submit Selection
           </button>
+
+          {/* Small Upload File Button */}
+          <button className="upload-file-btn" onClick={handleUploadButtonClick} style={{ marginTop: '10px' }}>
+            Upload File
+          </button>
+
+          {/* Conditionally Render Upload File Section */}
+          {isUploadVisible && (
+            <div className="data-selection">
+              <h2>Upload Your File</h2>
+              <input
+                type="file"
+                id="fileUpload"
+                className="file-upload-input"
+                onChange={handleFileChange}
+              />
+              <button onClick={handleFileUpload}>Upload</button>
+            </div>
+          )}
         </section>
 
         {/* Graphs Section */}
         <section id="graphs" className="graphs">
           <h2>Graphs & Insights</h2>
           {loading ? (
-            // <div className="spinner">
-            //   <ThreeDots color="#DECBA4" height={80} width={80} />
-            // </div>
-            <div>
-
-            </div>
+            <div>Loading...</div>
           ) : (
-            selectedData && selectedGraph && (
+            graphVisible && selectedData && selectedGraph && (
               <div>
                 <p>You have selected {selectedData} and {selectedGraph} for visualization.</p>
                 {renderGraph()}
@@ -171,4 +209,3 @@ function App() {
 }
 
 export default App;
-
