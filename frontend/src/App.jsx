@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { Line, Bar, Pie } from 'react-chartjs-2';
 import './App.css';
 import { Chart as ChartJS, CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend, BarElement, ArcElement } from 'chart.js';
@@ -14,6 +14,8 @@ function App() {
   const [file, setFile] = useState(null); // File upload state
   const [isUploadVisible, setIsUploadVisible] = useState(false); // File upload visibility
   const [graphVisible, setGraphVisible] = useState(false); // Control visibility of graph on submit
+
+  const chartRef = useRef(null);  // Reference for the chart
 
   const features = [
     { title: 'Advanced Data Analytics', description: 'Transform your raw data into actionable insights with advanced algorithms and visualization tools.' },
@@ -70,9 +72,9 @@ function App() {
 
   const renderGraph = () => {
     switch (selectedGraph) {
-      case 'graph1': return <Bar data={graphData} />;
-      case 'graph2': return <Line data={graphData} />;
-      case 'graph3': return <Pie data={graphData} />;
+      case 'graph1': return <Bar data={graphData} ref={chartRef} />;
+      case 'graph2': return <Line data={graphData} ref={chartRef} />;
+      case 'graph3': return <Pie data={graphData} ref={chartRef} />;
       default: return null;
     }
   };
@@ -101,6 +103,15 @@ function App() {
 
   const handleSubmit = () => {
     setGraphVisible(true);  // Show graph only after submit
+  };
+
+  const exportChart = () => {
+    const chart = chartRef.current.chartInstance;  // Access the chart instance
+    const imageUrl = chart.toBase64Image();  // Get base64 image of the chart
+    const link = document.createElement('a');
+    link.href = imageUrl;
+    link.download = 'chart.png';  // Name of the downloaded file
+    link.click();
   };
 
   return (
@@ -194,6 +205,8 @@ function App() {
               <div>
                 <p>You have selected {selectedData} and {selectedGraph} for visualization.</p>
                 {renderGraph()}
+                {/* Export Button */}
+                <button onClick={exportChart} style={{ marginTop: '10px' }}>Export Chart</button>
               </div>
             )
           )}
