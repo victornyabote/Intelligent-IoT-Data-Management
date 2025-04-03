@@ -176,13 +176,15 @@ select {
 button {
   background-color: #DECBA4; /* Accent color for button */
   color: #1C2A38; /* Dark text */
-  padding: 0.8rem 1.5rem;
-  font-size: 1rem;
+  padding: 1rem 2rem; /* Consistent padding for all buttons */
+  font-size: 1.2rem; /* Consistent font size */
   border: none;
   border-radius: 5px;
   cursor: pointer;
   transition: background-color 0.3s;
-  margin-bottom: 1rem; /* Add space between buttons */
+  margin: 0.5rem; /* Added margin for spacing */
+  display: inline-block; /* Prevent stretching */
+  width: auto; /* Avoid stretched button width */
 }
 
 button:hover {
@@ -194,11 +196,6 @@ button:hover {
 .upload-file-btn {
   margin-top: 1rem; /* Add space above the upload button */
   margin-bottom: 1.5rem; /* Adjust space below the upload button */
-}
-
-.upload-file-btn:hover {
-  background-color: #7f8c8d;
-  color: white;
 }
 
 /* File Upload Input Styles */
@@ -232,4 +229,22 @@ footer {
   margin-top: 3rem;
 }
 
+/* Spacing Adjustments for Submit, Upload, and Export Buttons */
+.submit-btn,
+.upload-file-btn,
+.export-btn {
+  padding: 1rem 2rem; /* Ensured consistent padding for all buttons */
+  font-size: 1.2rem; /* Consistent font size */
+  margin-top: 1rem; /* Adjusted for uniform spacing */
+  margin-bottom: 1rem; /* Ensures consistent space between buttons */
+  display: inline-block; /* Prevent stretching */
+  width: auto; /* Avoid full width */
+}
 
+.submit-btn:hover,
+.upload-file-btn:hover,
+.export-btn:hover {
+  background-color: #7f8c8d; /* Darker shade on hover */
+  color: white;
+  transform: scale(1.05); /* Slight scale effect */
+}
