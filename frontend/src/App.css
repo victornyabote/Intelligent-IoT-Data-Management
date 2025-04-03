@@ -1,6 +1,6 @@
 /* Default Styles */
 body {
-  font-family: 'Poppins', sans-serif; /* Using Poppins for a modern look */
+  font-family: 'Arial', sans-serif;
   transition: background-color 0.3s, color 0.3s;
 }
 
@@ -14,6 +14,10 @@ body.light-mode .top-nav {
   background-color: #ffffff;
   color: #333;
   border-bottom: 1px solid #ddd;
+  font-family: 'Roboto', sans-serif; /* New font for nav bar */
+  font-weight: 500;
+  letter-spacing: 1px; /* Adds space between characters */
+  text-transform: uppercase; /* Makes the nav text uppercase */
 }
 
 body.light-mode .theme-toggle-btn {
@@ -31,6 +35,10 @@ body.dark-mode .top-nav {
   background-color: #4e5d6d;
   color: white;
   border-bottom: 1px solid #444;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 500;
+  letter-spacing: 1px;
+  text-transform: uppercase;
 }
 
 body.dark-mode .theme-toggle-btn {
@@ -47,7 +55,10 @@ body.dark-mode .theme-toggle-btn {
   justify-content: center;
   align-items: center;
   transition: background-color 0.3s, color 0.3s;
-  font-weight: 500; /* Medium weight for navigation bar text */
+  font-family: 'Roboto', sans-serif; /* Stylish font for nav */
+  font-weight: 500; /* Slightly bolder text */
+  letter-spacing: 1px; /* Adds space between characters */
+  text-transform: uppercase; /* Uppercase text for the navigation */
 }
 
 .top-nav .nav-links {
@@ -60,8 +71,10 @@ body.dark-mode .theme-toggle-btn {
   color: #333;
   text-decoration: none;
   padding: 0.5rem 1rem;
-  font-weight: 500; /* Medium weight for links */
   transition: color 0.3s, background-color 0.3s;
+  font-family: 'Roboto', sans-serif; /* New font for links */
+  font-weight: 400;
+  letter-spacing: 1px;
 }
 
 .top-nav .nav-links a:hover {
@@ -69,13 +82,12 @@ body.dark-mode .theme-toggle-btn {
   background-color: #DECBA4;
 }
 
-/* Get Started Button */
+/* Other Styles (Remaining Unchanged) */
 .get-started-btn {
   background-color: #DECBA4;
   color: #1C2A38;
   padding: 0.8rem 1.5rem;
   font-size: 1.2rem;
-  font-weight: 600; /* Bold weight for emphasis */
   border: none;
   border-radius: 5px;
   cursor: pointer;
@@ -95,16 +107,14 @@ body.dark-mode .theme-toggle-btn {
   padding: 3rem 1.5rem;
 }
 
-/* Home Section */
 #home {
   text-align: center;
   padding: 3rem 0 5rem;
 }
 
 #home h1 {
-  font-size: 3rem; /* Larger heading size */
+  font-size: 2.5rem;
   color: #DECBA4;
-  font-weight: 700; /* Bold weight for headings */
 }
 
 #home p {
@@ -119,10 +129,9 @@ body.dark-mode .theme-toggle-btn {
 
 .features h2 {
   text-align: center;
-  font-size: 2.5rem; /* Increased font size for better visibility */
+  font-size: 2rem;
   margin-bottom: 2rem;
   color: #DECBA4;
-  font-weight: 600;
 }
 
 .card-container {
@@ -139,7 +148,6 @@ body.dark-mode .theme-toggle-btn {
   border-radius: 10px;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
   transition: transform 0.3s, background-color 0.3s;
-  font-family: 'Poppins', sans-serif; /* Ensuring the font is consistent */
 }
 
 .card:hover {
@@ -150,7 +158,6 @@ body.dark-mode .theme-toggle-btn {
 .card h3 {
   font-size: 1.5rem;
   color: #DECBA4;
-  font-weight: 600;
 }
 
 .card p {
@@ -165,9 +172,8 @@ body.dark-mode .theme-toggle-btn {
 }
 
 .data-selection h2 {
-  font-size: 2.5rem;
+  font-size: 2rem;
   color: #DECBA4;
-  font-weight: 600;
 }
 
 select {
@@ -186,7 +192,6 @@ button {
   color: #1C2A38;
   padding: 1rem 2rem;
   font-size: 1.2rem;
-  font-weight: 600; /* Bold font weight for buttons */
   border: none;
   border-radius: 5px;
   cursor: pointer;
@@ -201,7 +206,11 @@ button:hover {
   color: white;
 }
 
-/* File Upload Section */
+.upload-file-btn {
+  margin-top: 1rem;
+  margin-bottom: 1.5rem;
+}
+
 .file-upload-input {
   margin-top: 1rem;
   padding: 1rem;
@@ -216,18 +225,20 @@ button:hover {
   background-color: #f1f1f1;
 }
 
-/* Footer Section */
+.data-selection .data-selection input[type="file"] {
+  margin-top: 1rem;
+  padding: 0.8rem;
+}
+
 footer {
   background-color: #2E3B47;
   color: white;
   text-align: center;
   padding: 1rem;
-  font-size: 1.2rem; /* Slightly larger font size for footer */
-  font-weight: 400; /* Regular weight for footer text */
+  font-size: 1rem;
   margin-top: 3rem;
 }
 
-/* Spacing Adjustments for Buttons */
 .submit-btn,
 .upload-file-btn,
 .export-btn {
