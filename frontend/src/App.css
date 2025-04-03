@@ -1,18 +1,18 @@
 /* Default Styles */
 body {
-  font-family: 'Arial', sans-serif;
+  font-family: 'Poppins', sans-serif; /* Using Poppins for a modern look */
   transition: background-color 0.3s, color 0.3s;
 }
 
 /* Light Mode Styles */
 body.light-mode {
-  background-color: #f4f7f9; /* Light variant of #1C2A38 */
-  color: #333; /* Dark text for readability */
+  background-color: #f4f7f9;
+  color: #333;
 }
 
 body.light-mode .top-nav {
-  background-color: #ffffff; /* White background for navigation */
-  color: #333; /* Dark text */
+  background-color: #ffffff;
+  color: #333;
   border-bottom: 1px solid #ddd;
 }
 
@@ -23,12 +23,12 @@ body.light-mode .theme-toggle-btn {
 
 /* Dark Mode Styles */
 body.dark-mode {
-  background-color: #1C2A38; /* Dark background */
-  color: #ffffff; /* White text for contrast */
+  background-color: #1C2A38;
+  color: #ffffff;
 }
 
 body.dark-mode .top-nav {
-  background-color: #4e5d6d; /* Lighter dark background to match the theme */
+  background-color: #4e5d6d;
   color: white;
   border-bottom: 1px solid #444;
 }
@@ -40,13 +40,14 @@ body.dark-mode .theme-toggle-btn {
 
 /* Top Navigation Bar */
 .top-nav {
-  background-color: #ffffff; /* Light background for top-nav */
-  color: #333; /* Dark text */
+  background-color: #ffffff;
+  color: #333;
   padding: 1rem;
   display: flex;
   justify-content: center;
   align-items: center;
   transition: background-color 0.3s, color 0.3s;
+  font-weight: 500; /* Medium weight for navigation bar text */
 }
 
 .top-nav .nav-links {
@@ -59,20 +60,22 @@ body.dark-mode .theme-toggle-btn {
   color: #333;
   text-decoration: none;
   padding: 0.5rem 1rem;
+  font-weight: 500; /* Medium weight for links */
   transition: color 0.3s, background-color 0.3s;
 }
 
 .top-nav .nav-links a:hover {
   color: #fff;
-  background-color: #DECBA4; /* Accent color on hover */
+  background-color: #DECBA4;
 }
 
 /* Get Started Button */
 .get-started-btn {
-  background-color: #DECBA4; /* Accent color for button */
-  color: #1C2A38; /* Dark text */
+  background-color: #DECBA4;
+  color: #1C2A38;
   padding: 0.8rem 1.5rem;
   font-size: 1.2rem;
+  font-weight: 600; /* Bold weight for emphasis */
   border: none;
   border-radius: 5px;
   cursor: pointer;
@@ -81,9 +84,9 @@ body.dark-mode .theme-toggle-btn {
 }
 
 .get-started-btn:hover {
-  background-color: #7f8c8d; /* Darker shade on hover */
+  background-color: #7f8c8d;
   color: white;
-  transform: scale(1.05); /* Slight scale effect */
+  transform: scale(1.05);
 }
 
 /* Main Content */
@@ -99,13 +102,14 @@ body.dark-mode .theme-toggle-btn {
 }
 
 #home h1 {
-  font-size: 2.5rem;
-  color: #DECBA4; /* Accent color for headings */
+  font-size: 3rem; /* Larger heading size */
+  color: #DECBA4;
+  font-weight: 700; /* Bold weight for headings */
 }
 
 #home p {
   font-size: 1.2rem;
-  color: #6c757d; /* Lighter gray text */
+  color: #6c757d;
 }
 
 /* Features Section */
@@ -115,9 +119,10 @@ body.dark-mode .theme-toggle-btn {
 
 .features h2 {
   text-align: center;
-  font-size: 2rem;
+  font-size: 2.5rem; /* Increased font size for better visibility */
   margin-bottom: 2rem;
-  color: #DECBA4; /* Accent color for headings */
+  color: #DECBA4;
+  font-weight: 600;
 }
 
 .card-container {
@@ -127,28 +132,30 @@ body.dark-mode .theme-toggle-btn {
 }
 
 .card {
-  background-color: #2E3B47; /* Secondary dark color for cards */
+  background-color: #2E3B47;
   padding: 2rem;
   width: 250px;
   margin: 1rem;
   border-radius: 10px;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
   transition: transform 0.3s, background-color 0.3s;
+  font-family: 'Poppins', sans-serif; /* Ensuring the font is consistent */
 }
 
 .card:hover {
   transform: scale(1.05);
-  background-color: #1C2A38; /* Darker background on hover */
+  background-color: #1C2A38;
 }
 
 .card h3 {
   font-size: 1.5rem;
-  color: #DECBA4; /* Accent color for card titles */
+  color: #DECBA4;
+  font-weight: 600;
 }
 
 .card p {
   font-size: 1rem;
-  color: #f8f9fa; /* Light text for card descriptions */
+  color: #f8f9fa;
 }
 
 /* Data Selection Section */
@@ -158,8 +165,9 @@ body.dark-mode .theme-toggle-btn {
 }
 
 .data-selection h2 {
-  font-size: 2rem;
-  color: #DECBA4; /* Accent color for headings */
+  font-size: 2.5rem;
+  color: #DECBA4;
+  font-weight: 600;
 }
 
 select {
@@ -169,22 +177,23 @@ select {
   border-radius: 5px;
   border: 1px solid #ccc;
   width: 200px;
-  background-color: #ffffff; /* Light background */
-  color: #333; /* Dark text */
+  background-color: #ffffff;
+  color: #333;
 }
 
 button {
-  background-color: #DECBA4; /* Accent color for button */
-  color: #1C2A38; /* Dark text */
-  padding: 1rem 2rem; /* Consistent padding for all buttons */
-  font-size: 1.2rem; /* Consistent font size */
+  background-color: #DECBA4;
+  color: #1C2A38;
+  padding: 1rem 2rem;
+  font-size: 1.2rem;
+  font-weight: 600; /* Bold font weight for buttons */
   border: none;
   border-radius: 5px;
   cursor: pointer;
   transition: background-color 0.3s;
-  margin: 0.5rem; /* Added margin for spacing */
-  display: inline-block; /* Prevent stretching */
-  width: auto; /* Avoid stretched button width */
+  margin: 0.5rem;
+  display: inline-block;
+  width: auto;
 }
 
 button:hover {
@@ -192,59 +201,49 @@ button:hover {
   color: white;
 }
 
-/* Style the upload button specifically */
-.upload-file-btn {
-  margin-top: 1rem; /* Add space above the upload button */
-  margin-bottom: 1.5rem; /* Adjust space below the upload button */
-}
-
-/* File Upload Input Styles */
+/* File Upload Section */
 .file-upload-input {
   margin-top: 1rem;
   padding: 1rem;
   border-radius: 5px;
   border: 1px solid #ccc;
   width: 200px;
-  background-color: #ffffff; /* Light background */
-  color: #333; /* Dark text */
+  background-color: #ffffff;
+  color: #333;
 }
 
 .file-upload-input:hover {
-  background-color: #f1f1f1; /* Hover effect */
-}
-
-/* File Upload Section */
-.data-selection .data-selection input[type="file"] {
-  margin-top: 1rem;
-  padding: 0.8rem;
+  background-color: #f1f1f1;
 }
 
 /* Footer Section */
 footer {
-  background-color: #2E3B47; /* Secondary dark background */
+  background-color: #2E3B47;
   color: white;
   text-align: center;
   padding: 1rem;
-  font-size: 1rem;
+  font-size: 1.2rem; /* Slightly larger font size for footer */
+  font-weight: 400; /* Regular weight for footer text */
   margin-top: 3rem;
 }
 
-/* Spacing Adjustments for Submit, Upload, and Export Buttons */
+/* Spacing Adjustments for Buttons */
 .submit-btn,
 .upload-file-btn,
 .export-btn {
-  padding: 1rem 2rem; /* Ensured consistent padding for all buttons */
-  font-size: 1.2rem; /* Consistent font size */
-  margin-top: 1rem; /* Adjusted for uniform spacing */
-  margin-bottom: 1rem; /* Ensures consistent space between buttons */
-  display: inline-block; /* Prevent stretching */
-  width: auto; /* Avoid full width */
+  padding: 1rem 2rem;
+  font-size: 1.2rem;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  display: inline-block;
+  width: auto;
 }
 
 .submit-btn:hover,
 .upload-file-btn:hover,
 .export-btn:hover {
-  background-color: #7f8c8d; /* Darker shade on hover */
+  background-color: #7f8c8d;
   color: white;
-  transform: scale(1.05); /* Slight scale effect */
+  transform: scale(1.05);
 }
+
