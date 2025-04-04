@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import './Register.css'
 
 const Register = () => {
     const [firstName, setFirstName] = useState('')
@@ -17,7 +18,7 @@ const Register = () => {
     }
 
     return (
-        <div className="content">
+        <div className="register">
             <h1>Register</h1>
             <form onSubmit={handleSubmit}>
                 <label htmlFor="firstName">First Name</label>
