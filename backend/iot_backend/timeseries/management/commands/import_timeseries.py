@@ -61,4 +61,4 @@ class Command(BaseCommand):
             except Exception as row_error:
                 self.stdout.write(self.style.WARNING(f"Skipping row {index}: {row_error}"))
 
-        self.stdout.write(self.style.SUCCESS("✅ Data import complete."))
+        self.stdout.write(self.style.SUCCESS(" Data import complete."))
