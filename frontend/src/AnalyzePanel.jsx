@@ -1,4 +1,3 @@
-// src/AnalyzePanel.jsx
 import React, { useState } from 'react';
 import axios from 'axios';
 import RealTimeGraph from './RealTimeGraph';
@@ -90,10 +89,15 @@ const AnalyzePanel = () => {
           <pre>{JSON.stringify(result, null, 2)}</pre>
         </div>
       )}
+
+      {/* Real-Time Graph Integration */}
+      <RealTimeGraph selectedStreams={selectedStreams} />
     </div>
   );
 };
 
 export default AnalyzePanel;
+
+
 
 
