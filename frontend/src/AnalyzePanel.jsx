@@ -1,6 +1,7 @@
 // src/AnalyzePanel.jsx
 import React, { useState } from 'react';
 import axios from 'axios';
+import RealTimeGraph from './RealTimeGraph';
 
 const AnalyzePanel = () => {
   const [selectedStreams, setSelectedStreams] = useState([]);
@@ -94,4 +95,5 @@ const AnalyzePanel = () => {
 };
 
 export default AnalyzePanel;
+
 
