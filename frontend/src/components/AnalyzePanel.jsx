@@ -1,3 +1,4 @@
+// src/AnalyzePanel.jsx
 import React, { useState } from 'react';
 import axios from 'axios';
 
@@ -37,11 +38,11 @@ const AnalyzePanel = () => {
   };
 
   return (
-    <div style={{ padding: '20px', border: '1px solid #ddd', borderRadius: '12px', maxWidth: '600px' }}>
+    <div style={{ padding: '20px', maxWidth: '600px', margin: '0 auto' }}>
       <h2>📊 Analyze Sensor Correlation</h2>
 
       <div>
-        <label><strong>Select 3 Streams:</strong></label>
+        <label>Select 3 Streams:</label>
         <div style={{ display: 'flex', flexWrap: 'wrap', gap: '10px', marginBottom: '10px' }}>
           {availableStreams.map((stream) => (
             <label key={stream}>
@@ -84,7 +85,7 @@ const AnalyzePanel = () => {
 
       {result && (
         <div style={{ marginTop: '20px', background: '#f0f0f0', padding: '10px' }}>
-          <strong>Analysis Result:</strong>
+          <strong>Result:</strong>
           <pre>{JSON.stringify(result, null, 2)}</pre>
         </div>
       )}
@@ -93,3 +94,4 @@ const AnalyzePanel = () => {
 };
 
 export default AnalyzePanel;
+
