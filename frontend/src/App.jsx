@@ -1,11 +1,12 @@
 import { useState, useEffect } from 'react';
 import './App.css';
-import { Route, Routes } from 'react-router-dom'
-import Header from './Header'
-import Home from './Home'
-import Footer from './Footer'
-import Login from './Login'
-import Register from './Register.jsx'
+import { Route, Routes } from 'react-router-dom';
+import Header from './Header';
+import Home from './Home';
+import Footer from './Footer';
+import Login from './Login';
+import Register from './Register.jsx';
+import AnalyzePanel from './AnalyzePanel'; // ✅ Import the AnalyzePanel component
 
 function App() {
   const [isDarkMode, setIsDarkMode] = useState(false);  // State for dark mode
@@ -37,11 +38,12 @@ function App() {
 
   return (
     <div className={`${isDarkMode ? 'dark-mode' : ''}`}>
-      <Header toggleTheme={toggleTheme} isDarkMode={isDarkMode}/>
+      <Header toggleTheme={toggleTheme} isDarkMode={isDarkMode} /> {/* Navigation includes link */}
       <Routes>
         <Route path='/' element={<Home />} />
         <Route path='/login' element={<Login />} />
         <Route path='/register' element={<Register />} />
+        <Route path='/analyze' element={<AnalyzePanel />} /> {/* ✅ New Analyze route */}
       </Routes>
       <Footer />
     </div>
