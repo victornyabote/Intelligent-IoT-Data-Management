@@ -22,3 +22,4 @@ const Header = ({ toggleTheme, isDarkMode }) => {
 };
 
 export default Header;
+
