@@ -11,6 +11,11 @@ const AnalyzePanel = () => {
   const [result, setResult] = useState(null);
   const [error, setError] = useState('');
 
+  const [timeRange, setTimeRange] = useState('');
+  const [sensorFilter, setSensorFilter] = useState('');
+  const [valueThreshold, setValueThreshold] = useState('');
+  const [showFilters, setShowFilters] = useState(false);
+
   const availableStreams = ['Sensor 1', 'Sensor 2', 'Sensor 3', 'Sensor 4', 'Sensor 5'];
 
   const handleStreamChange = (stream) => {
@@ -94,25 +99,68 @@ const AnalyzePanel = () => {
         />
       </div>
 
-      <button onClick={handleAnalyze} className="analyze-btn">
-        🔍 Analyze
-      </button>
+      <div className="action-row">
+        <button onClick={handleAnalyze} className="analyze-btn">
+          🔍 Analyze
+        </button>
+        <button onClick={() => setShowFilters(!showFilters)} className="analyze-btn">
+          ⏳ Filter Data
+        </button>
+      </div>
 
-      {error && <div className="error-msg">{error}</div>}
+      {showFilters && (
+        <div className="filter-menu">
+          <select
+            value={timeRange}
+            onChange={(e) => setTimeRange(e.target.value)}
+            className="input-field"
+          >
+            <option value="">Time Range</option>
+            <option value="1h">Last Hour</option>
+            <option value="24h">Last Day</option>
+          </select>
 
-      {result && (
-        <div className="result-section">
-          <strong>Result:</strong>
-          <pre>{JSON.stringify(result, null, 2)}</pre>
+          <select
+            value={sensorFilter}
+            onChange={(e) => setSensorFilter(e.target.value)}
+            className="input-field"
+          >
+            <option value="">Sensor Type</option>
+            {availableStreams.map((s) => (
+              <option key={s} value={s}>{s}</option>
+            ))}
+          </select>
+
+          <select
+            value={valueThreshold}
+            onChange={(e) => setValueThreshold(e.target.value)}
+            className="input-field"
+          >
+            <option value="">Value Range</option>
+            <option value="10">Above 10</option>
+            <option value="20">Above 20</option>
+            <option value="30">Above 30</option>
+            <option value="40">Above 40</option>
+            <option value="50">Above 50</option>
+          </select>
         </div>
       )}
+
+      {error && <div className="error-msg">{error}</div>}
 
       <div className="graph-section">
         <div className="graph-header">
           <h3>📈 Real-Time Data Graph</h3>
-          <span className="live-badge">🟢 Live Stream</span>
+          <span className="live-badge">
+            🟢 Live Stream {sensorFilter ? `for ${sensorFilter}` : ''}
+          </span>
         </div>
-        <RealTimeGraph selectedStreams={selectedStreams} />
+        <RealTimeGraph
+          selectedStreams={selectedStreams}
+          timeRange={timeRange}
+          sensorFilter={sensorFilter}
+          valueThreshold={valueThreshold}
+        />
       </div>
     </div>
   );
