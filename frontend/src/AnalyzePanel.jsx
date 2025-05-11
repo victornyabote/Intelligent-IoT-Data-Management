@@ -11,10 +11,13 @@ const AnalyzePanel = () => {
   const [result, setResult] = useState(null);
   const [error, setError] = useState('');
 
+
+
   const [timeRange, setTimeRange] = useState('');
   const [sensorFilter, setSensorFilter] = useState('');
   const [valueThreshold, setValueThreshold] = useState('');
   const [showFilters, setShowFilters] = useState(false);
+
 
   const availableStreams = ['Sensor 1', 'Sensor 2', 'Sensor 3', 'Sensor 4', 'Sensor 5'];
 
@@ -99,6 +102,27 @@ const AnalyzePanel = () => {
         />
       </div>
 
+
+      <button onClick={handleAnalyze} className="analyze-btn">
+        🔍 Analyze
+      </button>
+
+      {error && <div className="error-msg">{error}</div>}
+
+      {result && (
+        <div className="result-section">
+          <strong>Result:</strong>
+          <pre>{JSON.stringify(result, null, 2)}</pre>
+        </div>
+      )}
+
+      <div className="graph-section">
+        <div className="graph-header">
+          <h3>📈 Real-Time Data Graph</h3>
+          <span className="live-badge">🟢 Live Stream</span>
+        </div>
+        <RealTimeGraph selectedStreams={selectedStreams} />
+
       <div className="action-row">
         <button onClick={handleAnalyze} className="analyze-btn">
           🔍 Analyze
@@ -161,6 +185,7 @@ const AnalyzePanel = () => {
           sensorFilter={sensorFilter}
           valueThreshold={valueThreshold}
         />
+
       </div>
     </div>
   );
