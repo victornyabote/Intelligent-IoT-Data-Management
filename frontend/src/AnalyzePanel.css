@@ -41,7 +41,7 @@
     border: 1px solid #ccc;
     border-radius: 6px;
     font-size: 1rem;
-
+}
 .input-field,
 .input-field[type="number"],
 select.input-field {
