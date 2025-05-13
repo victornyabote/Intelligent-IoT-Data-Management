@@ -4,8 +4,11 @@ export const lightTheme = createTheme({
   palette: {
     mode: "light",
     primary: {
-      main: "#ffffff",
+      main: "#f4f7f9",
       contrastText: "#000000",
+    },
+    checkbox: {
+      main: "#000",
     },
     background: {
       default: "#f5f5f5",
@@ -26,8 +29,11 @@ export const darkTheme = createTheme({
       contrastText: "#ffffff",
     },
     background: {
-      default: "#121212",
+      default: "#4e5d6d",
       paper: "#1e1e1e",
+    },
+    checkbox: {
+      main: "#000",
     },
     text: {
       primary: "#ffffff",

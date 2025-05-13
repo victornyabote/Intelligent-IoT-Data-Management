@@ -37,13 +37,18 @@ const Register = () => {
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
-        bgcolor: "#000",
+        bgcolor: "#4e5d6d",
       }}
     >
       <Container maxWidth="xs">
         <Paper
           elevation={3}
-          sx={{ p: 4, borderRadius: 2, background: "black" }}
+          sx={{
+            p: 4,
+            border: "none",
+            background: "#4e5d6d",
+            boxShadow: "none",
+          }}
         >
           <Typography
             variant="h5"
@@ -66,6 +71,12 @@ const Register = () => {
                 "& .MuiInputBase-input": {
                   color: "white",
                 },
+                "& .MuiInputLabel-root": {
+                  color: "white",
+                },
+                "& .MuiInputLabel-root.Mui-focused": {
+                  color: "white",
+                },
                 borderBottom: "1px solid #fff",
               }}
               value={firstName}
@@ -78,6 +89,12 @@ const Register = () => {
               type="text"
               sx={{
                 "& .MuiInputBase-input": {
+                  color: "white",
+                },
+                "& .MuiInputLabel-root": {
+                  color: "white",
+                },
+                "& .MuiInputLabel-root.Mui-focused": {
                   color: "white",
                 },
                 borderBottom: "1px solid #fff",
@@ -97,6 +114,12 @@ const Register = () => {
                 "& .MuiInputBase-input": {
                   color: "white",
                 },
+                "& .MuiInputLabel-root": {
+                  color: "white",
+                },
+                "& .MuiInputLabel-root.Mui-focused": {
+                  color: "white",
+                },
                 borderBottom: "1px solid #fff",
               }}
               margin="normal"
@@ -113,6 +136,12 @@ const Register = () => {
                 "& .MuiInputBase-input": {
                   color: "white",
                 },
+                "& .MuiInputLabel-root": {
+                  color: "white",
+                },
+                "& .MuiInputLabel-root.Mui-focused": {
+                  color: "white",
+                },
                 borderBottom: "1px solid #fff",
               }}
               margin="normal"
@@ -127,6 +156,12 @@ const Register = () => {
               type="password"
               sx={{
                 "& .MuiInputBase-input": {
+                  color: "white",
+                },
+                "& .MuiInputLabel-root": {
+                  color: "white",
+                },
+                "& .MuiInputLabel-root.Mui-focused": {
                   color: "white",
                 },
                 borderBottom: "1px solid #fff",
@@ -147,7 +182,7 @@ const Register = () => {
               type="submit"
               variant="contained"
               sx={{
-                backgroundColor: "#fff",
+                backgroundColor: "#DECBA4",
                 color: "#000",
 
                 marginTop: "20px",
@@ -160,7 +195,7 @@ const Register = () => {
               Already have an account?
               <Link
                 href="/login"
-                sx={{ color: "#FFA500", marginLeft: "10px" }}
+                sx={{ color: "#DECBA4", marginLeft: "10px" }}
                 underline="hover"
               >
                 Login Here
