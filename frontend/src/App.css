@@ -237,6 +237,8 @@ footer {
   padding: 1rem;
   font-size: 1rem;
   margin-top: 3rem;
+  position: absolute;
+  width: 100%;
 }
 
 .submit-btn,

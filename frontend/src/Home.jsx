@@ -178,10 +178,10 @@ const Home = () => {
           <Button
             href="#data-selection"
             sx={{
-              backgroundColor: isDarkMode ? "#FFA500" : "#FFA500",
+              backgroundColor: isDarkMode ? "#DECBA4" : "#DECBA4",
               color: isDarkMode ? "#fff" : "#000",
               "&:hover": {
-                backgroundColor: isDarkMode ? "#FFA500" : "#FFA500",
+                backgroundColor: isDarkMode ? "#DECBA4" : "#DECBA4",
               },
               marginTop: "20px",
             }}
@@ -235,7 +235,7 @@ const Home = () => {
                       </Typography>
                       <IconButton
                         sx={{
-                          bgcolor: "#FFA500",
+                          bgcolor: "#DECBA4",
                           color: "#000",
                           mb: 2,
                           "&:hover": { bgcolor: "primary.dark" },
@@ -357,7 +357,7 @@ const Home = () => {
               endIcon={<FileUp size={24} />}
               sx={{
                 minWidth: 150,
-                backgroundColor: isDarkMode ? "#FFA500" : "#FFA500",
+                backgroundColor: isDarkMode ? "#DECBA4" : "#DECBA4",
                 color: isDarkMode ? "#000" : "#000",
                 height: "56px", // Match the height of the Select inputs
               }}

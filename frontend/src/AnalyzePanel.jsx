@@ -4,6 +4,22 @@ import RealTimeGraph from "./RealTimeGraph";
 import html2canvas from "html2canvas";
 import { jsPDF } from "jspdf";
 import "./AnalyzePanel.css";
+import {
+  Box,
+  Typography,
+  Checkbox,
+  FormControlLabel,
+  FormGroup,
+  TextField,
+  Button,
+  Select,
+  MenuItem,
+  FormControl,
+  InputLabel,
+  Paper,
+  useTheme,
+  Stack,
+} from "@mui/material";
 
 const AnalyzePanel = () => {
   const [selectedStreams, setSelectedStreams] = useState([]);
@@ -220,47 +236,71 @@ const AnalyzePanel = () => {
     });
   };
 
+  const theme = useTheme();
   return (
-    <div className="analyze-container">
-      <h2>📊 Analyze Sensor Correlation</h2>
+    <>
+      <Typography
+        variant="h5"
+        textAlign={"center"}
+        fontWeight="bold"
+        gutterBottom
+        marginTop={"24px"}
+      >
+        {" "}
+        Analyze Sensor Correlation
+      </Typography>
+
+      <FormControl
+        fullWidth
+        sx={{ mb: 3, display: "flex", alignItems: "center" }}
+      >
+        <Typography>Select 3 Streams:</Typography>
+        <FormGroup row>
+          {availableStreams.map((stream) => (
+            <FormControlLabel
+              key={stream}
+              control={
+                <Checkbox
+                  checked={selectedStreams.includes(stream)}
+                  onChange={() => handleStreamChange(stream)}
+                  color="default"
+                  sx={{
+                    color: theme.palette.text.primary,
+                    "&.Mui-checked": {
+                      color: theme.palette.text.primary,
+                    },
+                  }}
+                />
+              }
+              label={stream}
+            />
+          ))}
+        </FormGroup>
+      </FormControl>
 
       <div className="form-group">
-        <label>Select 3 Streams:</label>
-        <div className="checkbox-group">
-          {availableStreams.map((stream) => (
-            <label key={stream} className="checkbox-label">
-              <input
-                type="checkbox"
-                checked={selectedStreams.includes(stream)}
-                onChange={() => handleStreamChange(stream)}
-              />
-              {stream}
-            </label>
-          ))}
+        <div>
+          <label>Start Time:</label>
+          <input
+            type="time"
+            value={startTime}
+            onChange={(e) => setStartTime(e.target.value)}
+            className="input-field"
+            style={{ width: "100%" }}
+          />
+        </div>
+
+        <div>
+          <label>End Time:</label>
+          <input
+            type="time"
+            value={endTime}
+            onChange={(e) => setEndTime(e.target.value)}
+            className="input-field"
+          />
         </div>
       </div>
-
-      <div className="form-group">
-        <label>Start Time:</label>
-        <input
-          type="time"
-          value={startTime}
-          onChange={(e) => setStartTime(e.target.value)}
-          className="input-field"
-        />
-      </div>
-
-      <div className="form-group">
-        <label>End Time:</label>
-        <input
-          type="time"
-          value={endTime}
-          onChange={(e) => setEndTime(e.target.value)}
-          className="input-field"
-        />
-      </div>
-
-      <div className="form-group">
+      <Stack padding={"24px"}>
         <label>Expected Correlation (0.0 - 1.0):</label>
         <input
           type="number"
@@ -271,117 +311,170 @@ const AnalyzePanel = () => {
           onChange={(e) => setExpectedCorrelation(e.target.value)}
           className="input-field"
         />
-      </div>
+      </Stack>
 
-      <button onClick={handleAnalyze} className="analyze-btn">
-        🔍 Analyze
-      </button>
-      <select
-        value={exportType}
-        onChange={(e) => setExportType(e.target.value)}
-        className="select"
+      <Box
+        display="flex"
+        gap={2}
+        sx={{ mb: 3 }}
+        justifyContent="center"
+        alignItems="stretch" // Ensures all children take full height of the tallest sibling
       >
-        <option value="CSV">CSV</option>
-        <option value="PDF">PDF</option>
-        <option value="PNG">PNG</option>
-      </select>
+        <Button
+          variant="contained"
+          size="large"
+          sx={{
+            backgroundColor: "#DECBA4",
+            color: "#000",
+            px: 4,
+            minHeight: 56, // Ensures consistent height with Select
+          }}
+          onClick={handleAnalyze}
+        >
+          🔍 Analyze
+        </Button>
 
-      <button
-        onClick={handleExport}
-        className="analyze_button analyze_secondaryButton"
-      >
-        <span className="analyze_icon">📥</span>
-        Export
-      </button>
+        <FormControl
+          sx={{
+            minWidth: 200,
+            minHeight: 56,
+            justifyContent: "center",
+          }}
+          size="large"
+        >
+          <InputLabel>Export</InputLabel>
+          <Select
+            value={exportType}
+            label="Export"
+            onChange={(e) => setExportType(e.target.value)}
+            sx={{
+              minHeight: 56,
+              display: "flex",
+              alignItems: "center",
+            }}
+          >
+            <MenuItem value="CSV">CSV</MenuItem>
+            <MenuItem value="PDF">PDF</MenuItem>
+            <MenuItem value="PNG">PNG</MenuItem>
+          </Select>
+        </FormControl>
 
-      {error && <div className="error-msg">{error}</div>}
+        <Button
+          variant="contained"
+          size="large"
+          sx={{
+            backgroundColor: "#DECBA4",
+            color: "#000",
+            px: 4,
+            minHeight: 56,
+          }}
+          onClick={handleExport}
+        >
+          📥 Export
+        </Button>
+      </Box>
 
-      {result && (
-        <div className="result-section">
-          <strong>Result:</strong>
-          <pre>{JSON.stringify(result, null, 2)}</pre>
-        </div>
+      {error && (
+        <Typography color="error" sx={{ mb: 2 }}>
+          {error}
+        </Typography>
       )}
 
-      <div className="graph-section">
-        <div className="graph-header">
-          <h3>📈 Real-Time Data Graph</h3>
-          <span className="live-badge">🟢 Live Stream</span>
-        </div>
-        <RealTimeGraph selectedStreams={selectedStreams} />
+      <Box padding={"24px"}>
+        {/* Header */}
+        <Box display="flex" alignItems="center" justifyContent="space-between">
+          <Typography variant="h6">📈 Real-Time Data Graph</Typography>
+          <Typography color="success.main">🟢 Live Stream</Typography>
+        </Box>
 
-        <div className="action-row">
-          <button onClick={handleAnalyze} className="analyze-btn">
+        {/* Button Actions */}
+        <Box display="flex" gap={2} mt={3}>
+          <Button variant="contained" onClick={handleAnalyze}>
             🔍 Analyze
-          </button>
-          <button
+          </Button>
+          <Button
+            variant="contained"
+            color="secondary"
             onClick={() => setShowFilters(!showFilters)}
-            className="analyze-btn"
           >
             ⏳ Filter Data
-          </button>
-        </div>
+          </Button>
+        </Box>
 
+        {/* Filters */}
         {showFilters && (
-          <div className="filter-menu">
-            <select
-              value={timeRange}
-              onChange={(e) => setTimeRange(e.target.value)}
-              className="input-field"
-            >
-              <option value="">Time Range</option>
-              <option value="1h">Last Hour</option>
-              <option value="24h">Last Day</option>
-            </select>
+          <Box display="flex" gap={2} mt={3}>
+            <FormControl fullWidth>
+              <InputLabel>Time Range</InputLabel>
+              <Select
+                value={timeRange}
+                label="Time Range"
+                onChange={(e) => setTimeRange(e.target.value)}
+              >
+                <MenuItem value="1h">Last Hour</MenuItem>
+                <MenuItem value="24h">Last Day</MenuItem>
+              </Select>
+            </FormControl>
 
-            <select
-              value={sensorFilter}
-              onChange={(e) => setSensorFilter(e.target.value)}
-              className="input-field"
-            >
-              <option value="">Sensor Type</option>
-              {availableStreams.map((s) => (
-                <option key={s} value={s}>
-                  {s}
-                </option>
-              ))}
-            </select>
+            <FormControl fullWidth>
+              <InputLabel>Sensor Type</InputLabel>
+              <Select
+                value={sensorFilter}
+                label="Sensor Type"
+                onChange={(e) => setSensorFilter(e.target.value)}
+              >
+                {availableStreams.map((s) => (
+                  <MenuItem key={s} value={s}>
+                    {s}
+                  </MenuItem>
+                ))}
+              </Select>
+            </FormControl>
 
-            <select
-              value={valueThreshold}
-              onChange={(e) => setValueThreshold(e.target.value)}
-              className="input-field"
-            >
-              <option value="">Value Range</option>
-              <option value="10">Above 10</option>
-              <option value="20">Above 20</option>
-              <option value="30">Above 30</option>
-              <option value="40">Above 40</option>
-              <option value="50">Above 50</option>
-            </select>
-          </div>
+            <FormControl fullWidth>
+              <InputLabel>Value Range</InputLabel>
+              <Select
+                value={valueThreshold}
+                label="Value Range"
+                onChange={(e) => setValueThreshold(e.target.value)}
+              >
+                <MenuItem value="10">Above 10</MenuItem>
+                <MenuItem value="20">Above 20</MenuItem>
+                <MenuItem value="30">Above 30</MenuItem>
+                <MenuItem value="40">Above 40</MenuItem>
+                <MenuItem value="50">Above 50</MenuItem>
+              </Select>
+            </FormControl>
+          </Box>
         )}
 
-        {error && <div className="error-msg">{error}</div>}
+        {/* Graphs Side-by-Side */}
+        <Box display="flex" gap={4} mt={4} flexWrap="wrap">
+          {/* Real-Time Graph */}
+          <Box flex={1} minWidth="400px">
+            <Typography variant="h6" gutterBottom>
+              📡 Raw Stream
+            </Typography>
+            <RealTimeGraph selectedStreams={selectedStreams} />
+          </Box>
 
-        <div className="graph-section">
-          <div className="graph-header">
-            <h3>📈 Real-Time Data Graph</h3>
-            <span className="live-badge">
-              🟢 Live Stream {sensorFilter ? `for ${sensorFilter}` : ""}
-            </span>
-          </div>
-          <div ref={graphRef}>
-            <RealTimeGraph
-              selectedStreams={selectedStreams}
-              timeRange={timeRange}
-              sensorFilter={sensorFilter}
-              valueThreshold={valueThreshold}
-            />
-          </div>
-        </div>
-      </div>
-    </div>
+          {/* Filtered Graph */}
+          <Box flex={1} minWidth="400px">
+            <Typography variant="h6" gutterBottom>
+              📈 Filtered Stream {sensorFilter ? `for ${sensorFilter}` : ""}
+            </Typography>
+            <div ref={graphRef}>
+              <RealTimeGraph
+                selectedStreams={selectedStreams}
+                timeRange={timeRange}
+                sensorFilter={sensorFilter}
+                valueThreshold={valueThreshold}
+              />
+            </div>
+          </Box>
+        </Box>
+      </Box>
+    </>
   );
 };
 
