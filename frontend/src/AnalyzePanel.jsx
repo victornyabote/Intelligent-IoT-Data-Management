@@ -116,7 +116,47 @@ const AnalyzePanel = () => {
         end: endTime,
         expectedCorrelation: parseFloat(expectedCorrelation),
       });
-      setResult(response.data);
+      setResult(data);
+    } catch (err) {
+      console.error(err);
+      alert("Analysis failed – check backend/network.");
+    }
+  };
+
+  const exportAll = async () => {
+    if (!result) {
+      alert("Run an analysis first.");
+      return;
+    }
+
+    try {
+      if (!Array.isArray(result.data)) {
+        alert("Unexpected data format for CSV export.");
+        return;
+      }
+
+      const csv = Papa.unparse(result.data);
+      saveAs(
+        new Blob([csv], { type: "text/csv;charset=utf-8;" }),
+        "analysis.csv"
+      );
+
+      const canvas = await html2canvas(graphRef.current);
+
+      await new Promise((res) =>
+        canvas.toBlob((b) => {
+          saveAs(b, "analysis.png");
+          res();
+        })
+      );
+
+      const pdf = new jsPDF({
+        orientation: "landscape",
+        unit: "px",
+        format: [canvas.width, canvas.height],
+      });
+      pdf.addImage(canvas.toDataURL("image/png"), "PNG", 0, 0);
+      pdf.save("analysis.pdf");
     } catch (err) {
       console.error("Error during analysis:", err);
       setError("Analysis failed. Check backend or network.");
@@ -303,6 +343,7 @@ const AnalyzePanel = () => {
       <Stack padding={"24px"}>
         <label>Expected Correlation (0.0 - 1.0):</label>
         <input
+          id="expectedCorrelation"
           type="number"
           step="0.1"
           min="0"
