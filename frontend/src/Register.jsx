@@ -158,7 +158,11 @@ const Register = () => {
 
             <Typography mt={4} sx={{ color: "white" }} textAlign="center">
               Already have an account?
-              <Link href="/login" sx={{ color: "#FFA500" }} underline="hover">
+              <Link
+                href="/login"
+                sx={{ color: "#FFA500", marginLeft: "10px" }}
+                underline="hover"
+              >
                 Login Here
               </Link>
             </Typography>
