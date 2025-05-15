@@ -377,7 +377,7 @@ const Home = () => {
             <DialogTitle id="responsive-dialog-title">File Upload</DialogTitle>
 
             <DialogContent>
-              <DialogContentText>
+              <div>
                 <div
                   className="data-selection"
                   style={{
@@ -433,7 +433,7 @@ const Home = () => {
                     </Typography>
                   )}
                 </div>
-              </DialogContentText>
+              </div>
             </DialogContent>
             <DialogActions>
               <Button
@@ -455,7 +455,6 @@ const Home = () => {
                     backgroundColor: isDarkMode ? "#FFA500" : "#FFA500",
                   },
                 }}
-                varia
               >
                 Upload
               </Button>
