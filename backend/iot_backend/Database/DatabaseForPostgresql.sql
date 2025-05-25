@@ -21,6 +21,9 @@ CREATE TABLE api_tokens (
     CONSTRAINT valid_scopes CHECK (scopes <> '{}')
 );
 
+-- Enable Postgis extension for geography
+CREATE EXTENSION IF NOT EXISTS postgis;
+
 -- Registered IoT devices
 CREATE TABLE devices (
     device_id UUID PRIMARY KEY,
@@ -44,19 +47,19 @@ CREATE TABLE sensor_streams (
 CREATE EXTENSION IF NOT EXISTS timescaledb CASCADE;
 
 -- Time-series sensor measurements
+CREATE TABLE sensor_data (
+    timestamp TIMESTAMPTZ NOT NULL,       -- Precise measurement time
+    stream_id UUID REFERENCES sensor_streams(stream_id) ON DELETE CASCADE,
+    value FLOAT NOT NULL,      -- Raw sensor reading
+    normalized_value FLOAT,    -- Standardized value (Z-score)
+    PRIMARY KEY (timestamp, stream_id)
+);
+
 SELECT create_hypertable(
     'sensor_data',
     'timestamp',
     chunk_time_interval => INTERVAL '7 days',
     if_not_exists => TRUE
-);
-
-CREATE TABLE sensor_data (
-    timestamp TIMESTAMPTZ NOT NULL,       -- Precise measurement time
-    stream_id UUID REFERENCES sensor_streams(stream_id) ON DELETE CASCADE,
-    value DOUBLE PRECISION NOT NULL,      -- Raw sensor reading
-    normalized_value DOUBLE PRECISION,    -- Standardized value (Z-score)
-    PRIMARY KEY (timestamp, stream_id)
 );
 
 -- Optimize for time-range queries
@@ -69,7 +72,7 @@ CREATE TABLE correlations (
     window_end TIMESTAMPTZ NOT NULL,      -- Analysis window end
     stream_a UUID REFERENCES sensor_streams(stream_id),
     stream_b UUID REFERENCES sensor_streams(stream_id),
-    coefficient DOUBLE PRECISION NOT NULL CHECK (coefficient BETWEEN -1 AND 1),
+    coefficient FLOAT NOT NULL CHECK (coefficient BETWEEN -1 AND 1),
     algorithm VARCHAR(50) NOT NULL,       -- Correlation method used
     CONSTRAINT valid_stream_pair CHECK (stream_a <> stream_b)
 );
@@ -80,8 +83,8 @@ CREATE TABLE anomalies (
     stream_id UUID REFERENCES sensor_streams(stream_id) ON DELETE CASCADE,
     detected_at TIMESTAMPTZ NOT NULL,     -- Time of detection
     anomaly_type VARCHAR(50) NOT NULL,    -- Classification of anomaly
-    raw_value DOUBLE PRECISION NOT NULL,  -- Original sensor value
-    confidence_score DOUBLE PRECISION NOT NULL CHECK (confidence_score BETWEEN 0 AND 1),
+    raw_value FLOAT NOT NULL,  -- Original sensor value
+    confidence_score FLOAT NOT NULL CHECK (confidence_score BETWEEN 0 AND 1),
     status VARCHAR(20) DEFAULT 'pending' CHECK (status IN ('pending', 'confirmed', 'resolved'))
 );
 
