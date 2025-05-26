@@ -1,28 +1,86 @@
-# Intelligent-IoT-Data-Management
-# Correlation and Anomaly Detection Study – IoT Sensor Data
+# Intelligent IoT Data Management Platform 🚀
 
-This notebook (`correlation_devanshi.ipynb`) presents a focused study on sensor correlation and anomaly detection within complex IoT datasets, contributing to the broader goal of intelligent data management and backend integration.
+A modular platform for intelligent anomaly detection and visualization of time series sensor data from IoT devices.
 
 ## Overview
 
-- Conducted correlation analysis between multiple IoT sensors to understand interdependencies using visual tools such as a correlation heatmap and rolling correlation plots.
-- Applied Principal Component Analysis (PCA) to identify variance and underlying patterns in the dataset.
-- Implemented Z-score–based anomaly detection to highlight deviations in sensor readings.
-- All visual outputs—including rolling correlations, PCA explained variance plots, and anomaly detection visualizations—are saved as `.png` files to assist with integration into the frontend interface.
+The Intelligent IoT Data Management Platform is designed to provide a smarter way to manage, analyze, and visualize sensor data collected from a variety of Internet of Things (IoT) devices. By leveraging real-time data collection and advanced analytics, the platform automatically monitors incoming sensor streams, identifies faults and anomalies, and presents insights through a modern, interactive dashboard. The system is suitable for a wide range of IoT use cases, from smart home applications to industrial monitoring and automation.
 
-## Purpose
+## Goals
 
-The study supports the identification of relevant sensor features for future machine learning models while ensuring that the outputs are interpretable and integration-ready. The exported visualizations and processed datasets align with the needs of the web team and backend engineers.
+- **Detect anomalies and faults in real-time sensor data:**  
+  The platform continuously analyzes incoming time series data to discover unusual patterns that may indicate system faults or critical issues. Early detection enables proactive maintenance and smarter decision-making.
 
-## Repository & Branch
+- **Visualize correlations and anomalies:**  
+  Users can view sensor data trends, correlations between different sensor streams, and detected anomalies through intuitive, interactive visualizations. This helps users understand relationships in their data and quickly spot problems.
 
-This contribution can be found under the following branch:  
-[`devanshi-correlation-study`](https://github.com/devanshityagii/Intelligent-IoT-Data-Management/tree/devanshi-correlation-study)
+- **Support integration with live data sources:**  
+  The backend is architected to allow easy integration with live data streams, making it possible to connect to real-world sensors and receive insights in real time.
 
-## Author
+## Tech Stack
 
-**Devanshi Tyagi**  
-GitHub: [@devanshityagii](https://github.com/devanshityagii)
+### Frontend
+- **React.js** for building a dynamic single-page application with a responsive user interface.
+- **Tailwind CSS** for fast, consistent, and modern styling, ensuring the UI is both attractive and user-friendly.
 
----
+### Backend
+- **Node.js** provides a performant server environment for handling API requests, data validation, and session management.
+- **WebSocket** enables real-time, bidirectional communication, making instant data updates and live visualizations possible.
 
+### Data Science
+- **Python** with libraries such as Pandas and NumPy for data manipulation and cleaning.
+- **Jupyter** is used during development for exploratory data analysis and prototyping models.
+- **Plotly** provides rich, interactive charts and graphs for advanced visualizations.
+- **Flask** exposes machine learning models and data processing workflows as APIs for easy backend integration.
+
+### DevOps & Collaboration
+- **Docker** ensures consistent environments and simplifies deployment across different systems.
+- **GitHub** is used for version control, collaboration, and continuous development/deployment, with clear project tracking and code review processes.
+
+## Features
+
+- **Upload and filter sensor data (CSV, JSON):**  
+  Users can upload their own sensor datasets in common formats, apply filters, and prepare data for analysis.
+
+- **Correlation analysis and anomaly detection:**  
+  The system identifies relationships between sensor streams using correlation analysis, and detects outliers using multiple machine learning approaches, including Z-score, Isolation Forest, LSTM, and One-Class SVM.
+
+- **Interactive dashboard with graph visualizations:**  
+  The web application provides a graph dashboard for visualizing sensor data, correlations, and anomalies. Light and dark mode options are included for user comfort.
+
+- **Export options (PNG, CSV):**  
+  Users can export processed data and visualizations for further analysis or reporting.
+
+- **Authentication (login/registration):**  
+  Secure endpoints enable user login and registration, with planned support for role-based access control.
+
+- **Real-time data streaming (WebSocket-ready):**  
+  The backend is set up to support real-time streaming, so users can connect live sensors for up-to-date analysis and insights.
+
+- **Modular, Dockerized structure:**  
+  Every component is modular and containerized, making the system easy to extend, maintain, and deploy.
+
+## Next Steps
+
+- **Heatmaps for correlations, sensor grouping, draggable graphs:**  
+  Future updates will add support for more advanced visualizations, including heatmaps to show sensor relationships, grouping of related sensors, and draggable time windows for easier analysis.
+
+- **Full pipeline automation and real-time integration:**  
+  The goal is to automate the entire process—from data filtering and correlation analysis to anomaly detection—so users can get results in real-time with minimal manual intervention.
+
+- **Enhanced mobile responsiveness and UI controls:**  
+  The frontend will be improved for better usability on mobile devices and large sensor networks, with optimized dropdowns, filters, and controls.
+
+- **Expanded documentation and onboarding:**  
+  Clearer guides and training material will be provided to help new users and contributors get started quickly.
+
+## Contributing
+
+We welcome data scientists, developers, and IoT engineers to build upon and extend this project! The codebase is modular, clean, and well-documented, making it easy to add new features or integrate new data sources. Docker and .env files ensure a flexible and consistent development environment. Whether you want to improve the machine learning models, enhance the frontend, or integrate with new sensors, your contributions are valued. Check out open issues and feature requests on GitHub to get started—pick up where we left off and keep building!
+
+## Contact
+
+Questions, suggestions, or want to join the project?  
+Reach out by opening a GitHub issue or pull request. Training material and onboarding docs are available for new contributors.
+
+Good luck, and enjoy the journey! 🌟
